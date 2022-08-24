@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -27,7 +27,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" th:href="@{/index}">Главная</a>
-                <a class="nav-item nav-link active" href="#">Вакансии<span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" th:href="@{/posts}">Вакансии</a>
                 <a class="nav-item nav-link" th:href="@{/addPost}">Добавить вакансию</a>
                 <a class="nav-item nav-link" th:href="@{/candidates}">Кандидаты</a>
                 <a class="nav-item nav-link" th:href="@{/addCandidate}">Добавить кандидата</a>

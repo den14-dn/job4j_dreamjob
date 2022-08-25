@@ -10,7 +10,6 @@ import ru.job4j.dreamjob.model.Post;
 
 import java.time.LocalDateTime;
 
-
 @Controller
 public class PostControl {
     private final PostStore store = PostStore.instOf();
@@ -28,7 +27,6 @@ public class PostControl {
 
     @PostMapping("/createPost")
     public String createPost(@ModelAttribute Post post) {
-        post.setCreated(LocalDateTime.now());
         store.add(post);
         return "redirect:/posts";
     }

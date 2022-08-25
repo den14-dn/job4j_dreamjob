@@ -3,7 +3,6 @@ package ru.job4j.dreamjob.store;
 import ru.job4j.dreamjob.model.Candidate;
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -27,4 +26,18 @@ public class CandidateStore {
     public Collection<Candidate> findAll() {
         return candidates.values();
     }
+
+    public boolean add(Candidate candidate) {
+        return candidates.put(candidate.getId(), candidate) != null;
+    }
+
+    public Candidate findById(int id) {
+        return candidates.get(id);
+    }
+
+    public boolean update(Candidate candidate) {
+        int id = candidate.getId();
+        return candidates.put(id, candidate) != null;
+    }
+
 }

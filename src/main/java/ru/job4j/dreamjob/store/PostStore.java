@@ -34,4 +34,13 @@ public class PostStore {
         post.setId(id);
         return posts.put(id, post) != null;
     }
+
+    public Post findById(int id) {
+        return posts.get(id);
+    }
+
+    public boolean update(Post post) {
+        int id = post.getId();
+        return posts.put(id, post) != null;
+    }
 }

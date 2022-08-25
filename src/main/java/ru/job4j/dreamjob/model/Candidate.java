@@ -7,7 +7,7 @@ public class Candidate {
     private int id;
     private String name;
     private String description;
-    private LocalDateTime created;
+    private LocalDateTime created = LocalDateTime.now();
 
     public Candidate() { }
 
@@ -15,7 +15,6 @@ public class Candidate {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.created = LocalDateTime.now();
     }
 
     public int getId() {
@@ -44,10 +43,6 @@ public class Candidate {
 
     public LocalDateTime getCreated() {
         return created;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
     }
 
     @Override

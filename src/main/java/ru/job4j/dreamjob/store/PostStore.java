@@ -5,16 +5,20 @@ import ru.job4j.dreamjob.model.Post;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class PostStore {
     private static final PostStore INST = new PostStore();
-
+    private final AtomicInteger generatorId = new AtomicInteger(0);
     private final Map<Integer, Post> posts = new ConcurrentHashMap<>();
 
     private PostStore() {
-        posts.put(1, new Post(1, "Junior Java Job", "Need junior java developer"));
-        posts.put(2, new Post(2, "Middle Java Job", "Need meddle java developer"));
-        posts.put(3, new Post(3, "Senior Java Job", "Need senior java developer"));
+        int id = generatorId.incrementAndGet();
+        posts.put(id, new Post(id, "Junior Java Job", "Need junior java developer"));
+        id = generatorId.incrementAndGet();
+        posts.put(id, new Post(id, "Middle Java Job", "Need meddle java developer"));
+        id = generatorId.incrementAndGet();
+        posts.put(id, new Post(id, "Senior Java Job", "Need senior java developer"));
     }
 
     public static PostStore instOf() {
@@ -26,6 +30,8 @@ public class PostStore {
     }
 
     public boolean add(Post post) {
-        return posts.put(post.getId(), post) != null;
+        int id = generatorId.incrementAndGet();
+        post.setId(id);
+        return posts.put(id, post) != null;
     }
 }

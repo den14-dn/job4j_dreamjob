@@ -41,6 +41,6 @@ public class PostStore {
 
     public boolean update(Post post) {
         int id = post.getId();
-        return posts.put(id, post) != null;
+        return posts.replace(id, post) != null;
     }
 }

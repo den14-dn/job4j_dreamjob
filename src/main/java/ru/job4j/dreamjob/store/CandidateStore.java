@@ -5,18 +5,24 @@ import ru.job4j.dreamjob.model.Candidate;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class CandidateStore {
     private static final CandidateStore INST = new CandidateStore();
-
+    private final AtomicInteger generatorId = new AtomicInteger(0);
     private final Map<Integer, Candidate> candidates = new ConcurrentHashMap<>();
 
     private CandidateStore() {
-        candidates.put(1, new Candidate(1, "Developer 1", "I am junior developer"));
-        candidates.put(2, new Candidate(2, "Developer 2", "I am senior developer"));
-        candidates.put(3, new Candidate(3, "Developer 3", "I am junior developer"));
-        candidates.put(4, new Candidate(4, "Developer 4", "I am middle developer"));
-        candidates.put(5, new Candidate(5, "Developer 5", "I am junior developer"));
+        int id = generatorId.incrementAndGet();
+        candidates.put(id, new Candidate(id, "Developer 1", "I am junior developer"));
+        id = generatorId.incrementAndGet();
+        candidates.put(id, new Candidate(id, "Developer 2", "I am senior developer"));
+        id = generatorId.incrementAndGet();
+        candidates.put(id, new Candidate(id, "Developer 3", "I am junior developer"));
+        id = generatorId.incrementAndGet();
+        candidates.put(id, new Candidate(id, "Developer 4", "I am middle developer"));
+        id = generatorId.incrementAndGet();
+        candidates.put(id, new Candidate(id, "Developer 5", "I am junior developer"));
     }
 
     public static CandidateStore instOf() {
@@ -28,7 +34,9 @@ public class CandidateStore {
     }
 
     public boolean add(Candidate candidate) {
-        return candidates.put(candidate.getId(), candidate) != null;
+        int id = generatorId.incrementAndGet();
+        candidate.setId(id);
+        return candidates.put(id, candidate) != null;
     }
 
     public Candidate findById(int id) {
@@ -37,7 +45,7 @@ public class CandidateStore {
 
     public boolean update(Candidate candidate) {
         int id = candidate.getId();
-        return candidates.put(id, candidate) != null;
+        return candidates.replace(id, candidate) != null;
     }
 
 }

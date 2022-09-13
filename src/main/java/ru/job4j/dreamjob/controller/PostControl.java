@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.job4j.dreamjob.store.PostStore;
 import ru.job4j.dreamjob.model.Post;
+import net.jcip.annotations.ThreadSafe;
 
 @Controller
+@ThreadSafe
 public class PostControl {
     private final PostStore store;
 

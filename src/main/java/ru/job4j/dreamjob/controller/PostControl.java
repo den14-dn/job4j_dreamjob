@@ -11,7 +11,11 @@ import ru.job4j.dreamjob.model.Post;
 
 @Controller
 public class PostControl {
-    private final PostStore store = PostStore.instOf();
+    private final PostStore store;
+
+    public PostControl(PostStore store) {
+        this.store = store;
+    }
 
     @GetMapping("/posts")
     public String posts(Model model) {

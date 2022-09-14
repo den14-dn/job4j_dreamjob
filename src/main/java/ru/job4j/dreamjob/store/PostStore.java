@@ -15,7 +15,7 @@ public class PostStore {
     private final AtomicInteger generatorId = new AtomicInteger(0);
     private final Map<Integer, Post> posts = new ConcurrentHashMap<>();
 
-    private PostStore() {
+    public PostStore() {
         int id = generatorId.incrementAndGet();
         posts.put(id, new Post(id, "Junior Java Job", "Need junior java developer"));
         id = generatorId.incrementAndGet();

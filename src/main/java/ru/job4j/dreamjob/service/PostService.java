@@ -10,17 +10,26 @@ import java.util.List;
 @Service
 @ThreadSafe
 public class PostService {
-    private final PostStore store;
+    private static final PostService INST = new PostService();
+    private final PostStore store = new PostStore();
 
-    public PostService(PostStore store) {
-        this.store = store;
+    public static PostService instOf() {
+        return INST;
     }
 
     public List<Post> findAll() {
         return store.findAll().stream().toList();
     }
 
-    public void add(Post post) {
-        store.add(post);
+    public boolean add(Post post) {
+        return store.add(post);
+    }
+
+    public Post findById(int id) {
+        return store.findById(id);
+    }
+
+    public boolean update(Post post) {
+        return store.update(post);
     }
 }

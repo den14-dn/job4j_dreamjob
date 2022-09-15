@@ -13,7 +13,11 @@ import net.jcip.annotations.ThreadSafe;
 @Controller
 @ThreadSafe
 public class PostControl {
-    private final PostService service = PostService.instOf();
+    private final PostService service;
+
+    public PostControl(PostService service) {
+        this.service = service;
+    }
 
     @GetMapping("/posts")
     public String posts(Model model) {

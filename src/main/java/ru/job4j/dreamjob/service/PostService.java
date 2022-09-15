@@ -10,11 +10,10 @@ import java.util.List;
 @Service
 @ThreadSafe
 public class PostService {
-    private static final PostService INST = new PostService();
-    private final PostStore store = new PostStore();
+    private final PostStore store;
 
-    public static PostService instOf() {
-        return INST;
+    public PostService(PostStore store) {
+        this.store = store;
     }
 
     public List<Post> findAll() {

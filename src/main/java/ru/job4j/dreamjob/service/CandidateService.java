@@ -23,4 +23,12 @@ public class CandidateService {
     public void add(Candidate candidate) {
         store.add(candidate);
     }
+
+    public Candidate findById(int id) {
+        return store.findById(id);
+    }
+
+    public boolean update(Candidate candidate) {
+        return store.update(candidate);
+    }
 }
